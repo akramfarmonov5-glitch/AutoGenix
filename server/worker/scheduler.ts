@@ -1,4 +1,5 @@
 import * as cron from "node-cron";
+import * as fs from "fs";
 import { storage } from "../storage";
 import { geminiService } from "../services/geminiService";
 import { telegramService } from "../services/telegramService";
@@ -83,7 +84,7 @@ export class SchedulerService {
           const imagePath = `public/uploads/${fileName}`;
           
           await geminiService.generateOGImage(postContent.title, imagePath);
-          imageUrl = await storageAdapter.uploadFile(fileName, require('fs').readFileSync(imagePath));
+          imageUrl = await storageAdapter.uploadFile(fileName, fs.readFileSync(imagePath));
           
           await storage.createImage({
             url: imageUrl,

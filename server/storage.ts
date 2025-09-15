@@ -14,6 +14,7 @@ import {
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, count, and, sql, gte, lte } from "drizzle-orm";
+import { MemoryStorage } from "./memoryStorage";
 
 export interface IStorage {
   // User methods
@@ -89,15 +90,26 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createPost(insertPost: InsertPost): Promise<Post> {
-    const [post] = await db.insert(posts).values([insertPost]).returning();
+    const [post] = await db.insert(posts).values([insertPost as typeof posts.$inferInsert]).returning();
     return post;
   }
 
   async updatePost(id: number, updates: Partial<InsertPost>): Promise<Post> {
-    const updateData = { ...updates, updatedAt: new Date() };
+    const setData: any = { updatedAt: new Date() };
+    if (updates.title !== undefined) setData.title = updates.title;
+    if (updates.slug !== undefined) setData.slug = updates.slug;
+    if (updates.body !== undefined) setData.body = updates.body;
+    if (updates.excerpt !== undefined) setData.excerpt = updates.excerpt;
+    if (updates.metaTitle !== undefined) setData.metaTitle = updates.metaTitle;
+    if (updates.metaDescription !== undefined) setData.metaDescription = updates.metaDescription;
+    if (updates.tags !== undefined) setData.tags = updates.tags;
+    if (updates.imageUrl !== undefined) setData.imageUrl = updates.imageUrl;
+    if (updates.status !== undefined) setData.status = updates.status;
+    if (updates.needsReview !== undefined) setData.needsReview = updates.needsReview;
+
     const [post] = await db
       .update(posts)
-      .set(updateData)
+      .set(setData)
       .where(eq(posts.id, id))
       .returning();
     return post;
@@ -117,7 +129,7 @@ export class DatabaseStorage implements IStorage {
 
   // Image methods
   async createImage(insertImage: InsertImage): Promise<Image> {
-    const [image] = await db.insert(images).values(insertImage).returning();
+    const [image] = await db.insert(images).values([insertImage]).returning();
     return image;
   }
 
@@ -159,7 +171,7 @@ export class DatabaseStorage implements IStorage {
 
   // Job log methods
   async createJobLog(insertJobLog: InsertJobLog): Promise<JobLog> {
-    const [jobLog] = await db.insert(jobLogs).values(insertJobLog).returning();
+    const [jobLog] = await db.insert(jobLogs).values([insertJobLog]).returning();
     return jobLog;
   }
 
@@ -172,4 +184,8 @@ export class DatabaseStorage implements IStorage {
   }
 }
 
-export const storage = new DatabaseStorage();
+// Temporarily use memory storage to avoid SSL/database connection issues
+export const storage = new MemoryStorage();
+
+// For debugging
+console.log('Storage initialized:', storage.constructor.name);
