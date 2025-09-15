@@ -1,0 +1,107 @@
+services:
+  # Main web service
+  - type: web
+    name: autogenix-ai-web
+    plan: starter # Free tier, upgrade as needed
+    env: node
+    buildCommand: npm run build
+    startCommand: npm run start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: DATABASE_URL
+        fromDatabase:
+          name: autogenix-postgres
+          property: connectionString
+      - key: GEMINI_API_KEY
+        sync: false # Set manually in Render dashboard
+      - key: GOOGLE_API_KEY
+        sync: false # Alternative to GEMINI_API_KEY
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false # Optional - set manually
+      - key: TELEGRAM_CHANNEL_ID
+        sync: false # Optional - set manually
+      - key: STORAGE_PROVIDER
+        value: local # Use 's3' for production with S3
+      - key: S3_BUCKET
+        sync: false # Set if using S3
+      - key: S3_ACCESS_KEY
+        sync: false # Set if using S3
+      - key: S3_SECRET_KEY
+        sync: false # Set if using S3
+      - key: S3_REGION
+        value: us-east-1
+      - key: ADMIN_TOKEN
+        generateValue: true # Auto-generate secure token
+      - key: MAX_DAILY_IMAGES
+        value: 50
+      - key: SITE_URL
+        value: https://autogenix.uz # Update with your domain
+      - key: SESSION_SECRET
+        generateValue: true # Auto-generate secure session secret
+
+  # Background worker service (optional - can run in main web service)
+  # Uncomment if you want a separate worker service
+  # - type: worker
+  #   name: autogenix-ai-worker
+  #   env: node
+  #   buildCommand: npm install
+  #   startCommand: node dist/worker/scheduler.js
+  #   envVars:
+  #     - key: NODE_ENV
+  #       value: production
+  #     - key: DATABASE_URL
+  #       fromDatabase:
+  #         name: autogenix-postgres
+  #         property: connectionString
+  #     - key: GEMINI_API_KEY
+  #       sync: false
+  #     - key: TELEGRAM_BOT_TOKEN
+  #       sync: false
+  #     - key: TELEGRAM_CHANNEL_ID
+  #       sync: false
+  #     - key: MAX_DAILY_IMAGES
+  #       value: 50
+  #     - key: ADMIN_TOKEN
+  #       sync: false
+
+# PostgreSQL database
+databases:
+  - name: autogenix-postgres
+    plan: free # Free tier PostgreSQL
+    databaseName: autogenix
+    user: autogenix
+
+# Optional: Redis for caching (upgrade plan required)
+# - name: autogenix-redis
+#   plan: free
+#   type: redis
+
+# Custom domains (set up after deployment)
+# domains:
+#   - autogenix.uz
+#   - www.autogenix.uz
+
+# Build settings
+buildFilter:
+  paths:
+    - client/**
+    - server/**
+    - shared/**
+    - package.json
+    - package-lock.json
+    - tsconfig.json
+    - render.yaml
+  ignoredPaths:
+    - README.md
+    - .gitignore
+    - docs/**
+    - tests/**
+
+# Environment-specific settings
+environments:
+  - name: production
+    sync: true
