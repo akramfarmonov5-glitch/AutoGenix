@@ -21,7 +21,7 @@ export const posts = pgTable("posts", {
   excerpt: text("excerpt"),
   metaTitle: text("meta_title"),
   metaDescription: text("meta_description"),
-  tags: jsonb("tags").$type<string[]>().default([]),
+  tags: jsonb("tags").$type<string[]>().default(sql`'[]'::jsonb`),
   imageUrl: text("image_url"),
   status: text("status").notNull().default("draft"), // draft | published | queued | review
   needsReview: boolean("needs_review").default(false),

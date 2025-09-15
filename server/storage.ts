@@ -89,14 +89,15 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createPost(insertPost: InsertPost): Promise<Post> {
-    const [post] = await db.insert(posts).values(insertPost).returning();
+    const [post] = await db.insert(posts).values([insertPost]).returning();
     return post;
   }
 
   async updatePost(id: number, updates: Partial<InsertPost>): Promise<Post> {
+    const updateData = { ...updates, updatedAt: new Date() };
     const [post] = await db
       .update(posts)
-      .set({ ...updates, updatedAt: sql`now()` })
+      .set(updateData)
       .where(eq(posts.id, id))
       .returning();
     return post;

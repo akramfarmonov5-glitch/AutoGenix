@@ -1,0 +1,187 @@
+Replit AI ga joylashtiriladigan prompt (to‘liq, nusxa ko‘chirilsin)
+Iltimos, quyidagi talablar asosida to‘liq Git repo yarating (Next.js + Node.js, TypeScript). Loyihaning nomi: AutoGenix AI. Domen: autogenix.uz. Loyihaning vazifasi: sayt (Bosh sahifa, Xizmatlar, Blog, Portfolio, Bog‘lanish), avtomatik AI-based post generator (15 sayt post/kun: soat 07:00–21:00 har soatda 1 ta; 5 ta Telegram post/kun: marketing soatlari 09:00, 12:00, 15:00, 18:00, 20:00), rasm generatsiyasi har bir post uchun Gemini 2.5 Flash Image, matn generatsiyasi Gemini 1.5 Flash.
+
+**Texnik stack:**
+- Frontend: Next.js (App Router yoki Pages ok), TypeScript, TailwindCSS, React.
+- Backend: Next API routes yoki kichik Express mikroxizmat (TypeScript).
+- DB: Prisma (dev: SQLite), production: Postgres (Render). Model: Post, Image, User(Admin), JobLog.
+- Storage: Local / S3 (abstracted adapter). Rasm/favicons PNG va SVG.
+- Telegram: Telegraf (bot sending to channel).
+- Scheduler: node-cron worker process (ya da Render cron job support).
+- Testing: Jest (yagona test misoli).
+- Lint & Prettier.
+
+**Talab qilingan deliverables (har biri avtomatik yaratilgan va ishga tushadigan):**
+1. `README.md` — o‘rnatish + env o‘zgaruvchilar + deploy to Render qadamlar.
+2. To‘liq Next.js frontend: Bosh sahifa, Xizmatlar, Blog (post list + single post), Portfolio, Bog‘lanish (contact form, Telegram link).
+3. Admin panel (shifrlangan Basic Auth yoki token) — posts ro‘yxati, draftlarni ko‘rish, postni tahrirlash va qo‘l bilan e’lon qilish, regenerate tugmasi.
+4. API routes:
+   - `POST /api/generate/post` — bir marta post generatsiya qiladi (text + image) va DB ga saqlaydi (status=draft/published).
+   - `GET /api/posts` — public posts.
+   - `GET /api/admin/posts` — admin-only.
+   - `POST /api/webhook/telegram` — (agar kerak) Telegram webhook.
+5. Worker: `worker/scheduler.ts` — cron jadvalini o‘rnatib, har soat soat boshida 07:00–21:00 oralig‘ida site postlari uchun job yaratadi; Telegram uchun kunlik 5 vaqtda alohida job.
+6. Gemini integratsiyasi modul: `lib/gemini.ts` yoki `services/geminiService.ts` — textGeneration(prompt, options) va imageGeneration(prompt, options) funktsiyalari. Ishlash uchun HTTP `fetch` yoki `axios` bilan yozilsin. Token limit va temperature sozlanadi. Javobni JSON parsela qo‘ying.
+7. Image storage adapter: `lib/storage.ts` — local dev + S3/GCS prod toggllash. Fayllar `public/uploads/` (dev) va `s3://autogenix-uploads/` (prod).
+8. Telegram service: `services/telegram.ts` — sendToChannel(text, imageUrl) funksiyasi.
+9. Moderatsiya: har generatsiyadan keyin oddiy filter (profanity/blacklist) va `needs_review` flag qo‘yilsin.
+10. Cost-control: har image create oldin rasm narxi taxminini hisoblovchi limit (env bilan boshqariladigan max_images_per_day), va agar limit oshsa — job`ni `queued` holatida qoldirish.
+11. Favicon/app icons: avvalgi yuborgan PNG fayllardan 16x16, 32x32, 180x180, 512x512 variantlarini yaratish skripti.
+12. `render.yaml` yoki `Dockerfile` + `render`-config bo‘lsin (web + worker + cron/yoki background worker instructions). Yoki kamida bitta `Procfile` va deploy skript.
+
+**Repo strukturasi (taklif):**
+
+
+/ (root)
+├─ README.md
+├─ package.json
+├─ tsconfig.json
+├─ next.config.js
+├─ postcss.config.js
+├─ tailwind.config.js
+├─ prisma/
+│ └─ schema.prisma
+├─ src/
+│ ├─ app/ (Next.js pages or app router)
+│ ├─ components/
+│ ├─ lib/
+│ │ ├─ gemini.ts
+│ │ ├─ storage.ts
+│ │ └─ telegram.ts
+│ ├─ pages/api/
+│ │ ├─ generate/post.ts
+│ │ └─ admin/posts.ts
+│ ├─ worker/
+│ │ └─ scheduler.ts
+│ └─ styles/
+├─ public/
+│ └─ icons/ (favicon, app icons)
+├─ scripts/
+│ └─ make-icons.js
+└─ render.yaml
+
+
+**Prisma model (soddalashtirilgan):**
+
+
+model Post {
+id Int @id @default(autoincrement())
+title String
+slug String @unique
+body String
+excerpt String?
+metaTitle String?
+metaDescription String?
+tags String[] @default([])
+imageUrl String?
+status String @default("draft") // draft | published | queued
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
+}
+
+model Image {
+id Int @id @default(autoincrement())
+url String
+prompt String
+createdAt DateTime @default(now())
+}
+
+model JobLog {
+id Int @id @default(autoincrement())
+type String
+detail String
+status String
+createdAt DateTime @default(now())
+}
+
+
+**Environment variables (README da batafsil yozilsin):**
+
+Gemini
+
+GEMINI_API_KEY=...
+GEMINI_TEXT_ENDPOINT=https://api.google.com/gemini/1_5/
+...
+GEMINI_IMAGE_ENDPOINT=https://api.google.com/gemini/2_5_image/
+...
+
+Telegram
+
+TELEGRAM_BOT_TOKEN=...
+TELEGRAM_CHANNEL_ID=@yourchannel
+
+Database
+
+DATABASE_URL=file:./dev.db (dev)
+
+production: postgres://USER:PASS@HOST:PORT/DB
+Storage
+
+STORAGE_PROVIDER=local | s3 | gcs
+S3_BUCKET=...
+S3_ACCESS_KEY=...
+S3_SECRET_KEY=...
+
+App
+
+PORT=3000
+ADMIN_TOKEN=some-secret-token
+MAX_DAILY_IMAGES=50
+
+
+**Prompt shablonlari (Gemini 1.5 — o‘zbekcha, SEO):**
+- Short post (200–350 so‘z):
+
+
+Sarlavha: {topic_keyword}
+Talab: 200–300 so‘z atrofida, SEO-optimallashtirilgan blog post. Auditoriya: kichik va o‘rta biznes, o‘zbek tilida. Struktur: kirish (1 paragraf), 3 kichik bo‘lim (har biri 2-3 jumla), xulosa + 1 CTA (biz bilan bog‘laning). So‘zlarda muhim keyword: {topic_keyword}. Meta title (max 60 belgida). Meta description (120–160 belgida). 5 ta teg (comma-separated).
+
+- OG image prompt (Gemini 2.5 Image, inglizcha):
+
+
+Create a clean, flat vector OG image for the blog post titled "{title}". Use company colors: #1E40AF (deep blue) and #FACC15 (gold). Include the gear+lightning icon (center-left) and short title text (shorten if needed). Size 1200x630, PNG, transparent background optional.
+
+
+**Telegram post template (qisqa):**
+
+
+{title}
+{excerpt}
+👀 To‘liq: {post_url}
+📩 Biz bilan bog‘lanish: t.me/YourBot
+
+
+**Qo‘shimcha funksionallik va xavfsizlik:**
+- Hamma API chaqiriqlar server-side bo‘lsin (GEMINI_API_KEY clientga chiqmasin).
+- Rate limiting: per-key limit; agar Gemini’dan 429 qaytsa — exponential backoff.
+- Moderatsiya: textni qayta tekshirish (simple regex + human flag).
+- Audit logs: JobLog har bir generatsiya uchun.
+- Admin authentication: minimal token-based BasicAuth (README da o‘zgartirish mumkin).
+- Failover: agar image creation muvaffaqiyatsiz bo‘lsa — postni `image_failed` flag bilan e’lon qiling yoki fallback image generatsiya.
+
+**Deploy to Render (qadamlar README da):**
+1. Render’da new web service — GitHub repo ulab build command: `npm run build` va start: `npm run start`.
+2. Worker service: `npm run worker` (background) yoki Render Cron job pointing to a tiny API endpoint `/api/generate/scheduled`.
+3. Set env vars in Render dashboard.
+4. Point domain autogenix.uz.
+
+**Testing & Local dev:**
+- `npm run dev` — Next dev.
+- `npm run worker:dev` — worker in dev (node worker/scheduler.ts).
+- Seed script: create sample posts + admin user.
+- Unit test: jest test for gemini service mocking responses.
+
+**Quality & Delivery notes for Replit AI:**
+- Kod TypeScript bilan yozilsin va ESLint/Prettier qo‘yilsin.
+- Komponentlar Tailwind bilan responsive va accessible bo‘lsin.
+- Har qanday “secret” yoki API key real qiymatlar o‘rniga `process.env.*` ishlatilgan bo‘lsin.
+- README da "how to get Gemini API key" qismi qisman yozilsin (link ham berilsin).
+- Repo tayyor bo‘lgach: `git init` + initial commit va `main` branch.
+
+**Oxirida menga chiqarish fayllari:**
+- `README.md`, `render.yaml`, `package.json`, `prisma/schema.prisma`, `src/*` hammasi.
+- PNG favicon va app icon variantlari (16x16, 32x32, 180x180, 512x512) public/icons papkasida.
+
+Iltimos, loyiha to‘liq ishlaydigan MVP holatda yarating — bir marta `npm install` va `npm run dev` bilan lokalda ishga tushishi, hamda Render uchun build va start skriptlariga ega bo‘lsin. Har bir muhim fayl boshida qisqacha sharh (komment) bo‘lsin.
+
+Agar savollar bo‘lmasa, shu kodni to‘liq generatsiya qilib bering va menga repo tuzilmasi hamda qayerda test qilish mumkinligi haqida qisqacha ko‘rsatma bering.
