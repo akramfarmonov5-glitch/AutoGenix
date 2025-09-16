@@ -712,6 +712,129 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Contact Preview Section */}
+      <section className="py-20 bg-gradient-to-br from-primary/5 to-accent/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            {/* Section Header */}
+            <div className="mb-12">
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-primary/20 shadow-sm mb-6">
+                <Bot className="w-4 h-4 mr-2 text-primary" />
+                <span className="text-sm font-semibold text-gray-700">24/7 Qo'llab-quvvatlash</span>
+              </div>
+              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                Tayyor <span className="text-gradient">boshlashga</span>?
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                AutoGenix AI bilan biznesingizni avtomatlashtiring. Mutaxassislarimiz sizga eng yaxshi yechimni taklif qiladi.
+              </p>
+            </div>
+
+            {/* Contact Methods Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              {/* Quick Start */}
+              <Card className="group hover:shadow-xl hover:scale-105 transition-all duration-300 bg-white border-0 shadow-lg" data-testid="card-quick-start">
+                <CardContent className="p-8 text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Zap className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Tezkor Boshlash</h3>
+                  <p className="text-gray-600 mb-6">
+                    5 daqiqada ro'yxatdan o'ting va avtomatik kontent yaratishni boshlang
+                  </p>
+                  <Link href="/contact" data-testid="link-quick-start">
+                    <Button className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold">
+                      Hoziroq boshlang
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+
+              {/* Expert Consultation */}
+              <Card className="group hover:shadow-xl hover:scale-105 transition-all duration-300 bg-white border-0 shadow-lg" data-testid="card-consultation">
+                <CardContent className="p-8 text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Settings className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Mutaxassis Maslahati</h3>
+                  <p className="text-gray-600 mb-6">
+                    Bizning AI mutaxassislari bilan bepul maslahat seansi o'tkazing
+                  </p>
+                  <Link href="/contact" data-testid="link-consultation">
+                    <Button variant="outline" className="w-full border-2 border-blue-500 text-blue-600 hover:bg-blue-50 font-semibold">
+                      Maslahat olish
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+
+              {/* Custom Solution */}
+              <Card className="group hover:shadow-xl hover:scale-105 transition-all duration-300 bg-white border-0 shadow-lg" data-testid="card-custom-solution">
+                <CardContent className="p-8 text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Shield className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Maxsus Yechim</h3>
+                  <p className="text-gray-600 mb-6">
+                    Biznesingiz uchun individual AI strategiya va yechim ishlab chiqamiz
+                  </p>
+                  <Link href="/contact" data-testid="link-custom-solution">
+                    <Button variant="outline" className="w-full border-2 border-purple-500 text-purple-600 hover:bg-purple-50 font-semibold">
+                      Loyiha muhokamasi
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Quick Contact Info */}
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 shadow-lg">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div className="group">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                    <FaTelegram className="w-6 h-6 text-primary" />
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-1">Telegram</h4>
+                  <p className="text-gray-600 text-sm">@AutoGenixSupport</p>
+                  <p className="text-xs text-gray-500">Tezkor javob</p>
+                </div>
+                
+                <div className="group">
+                  <div className="w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-6 h-6 text-green-600 font-bold text-lg">@</div>
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-1">Email</h4>
+                  <p className="text-gray-600 text-sm">info@autogenix.uz</p>
+                  <p className="text-xs text-gray-500">Professional muloqot</p>
+                </div>
+                
+                <div className="group">
+                  <div className="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                    <Calendar className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-1">Ish Vaqti</h4>
+                  <p className="text-gray-600 text-sm">Dush-Juma: 9:00-18:00</p>
+                  <p className="text-xs text-gray-500">O'zbekiston vaqti</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Final CTA */}
+            <div className="mt-12">
+              <Link href="/contact" data-testid="button-main-contact">
+                <Button className="bg-primary text-white hover:bg-primary/90 px-12 py-4 text-xl font-bold rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 group">
+                  Biz bilan bog'laning
+                  <Bot className="w-6 h-6 ml-3 group-hover:scale-110 transition-transform duration-300" />
+                </Button>
+              </Link>
+              <p className="text-gray-500 text-sm mt-4">
+                Bepul konsultatsiya va demo sesiya uchun bog'laning
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );
