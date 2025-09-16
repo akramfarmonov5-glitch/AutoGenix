@@ -402,6 +402,131 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Blog Preview Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 bg-green-100 rounded-full text-green-700 font-semibold text-sm mb-6">
+              <PenTool className="w-4 h-4 mr-2" />
+              AI Yaratgan Kontent
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+              So'nggi <span className="text-gradient">Blog Postlarimiz</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              AI texnologiyamiz yordamida yaratilgan professional blog postlarini o'qing va platformamizning quvvatini ko'ring
+            </p>
+          </div>
+
+          {/* Blog Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {/* Blog Post 1 */}
+            <Card className="group hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden bg-white border-0 shadow-lg" data-testid="card-blog-1">
+              <div className="relative overflow-hidden">
+                <div className="w-full h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+                    <Settings className="w-8 h-8 text-primary" />
+                  </div>
+                </div>
+                <div className="absolute top-4 left-4">
+                  <div className="inline-flex items-center px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-semibold text-primary">
+                    Texnologiya
+                  </div>
+                </div>
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                  AI Texnologiyalari: Biznes Dunyosida Inqilob
+                </h3>
+                <p className="text-gray-600 mb-4 line-clamp-3">
+                  Sun'iy intellekt texnologiyalari zamonaviy biznesda qanday inqilob yaratayotgani va kompaniyalar...
+                </p>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-2">
+                    <Calendar className="w-4 h-4" />
+                    <span>Bugun</span>
+                  </div>
+                  <span className="text-green-600 font-semibold">AI Generated</span>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Blog Post 2 */}
+            <Card className="group hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden bg-white border-0 shadow-lg" data-testid="card-blog-2">
+              <div className="relative overflow-hidden">
+                <div className="w-full h-48 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-blue-500/10 rounded-full flex items-center justify-center">
+                    <Bot className="w-8 h-8 text-blue-600" />
+                  </div>
+                </div>
+                <div className="absolute top-4 left-4">
+                  <div className="inline-flex items-center px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-semibold text-blue-600">
+                    Marketing
+                  </div>
+                </div>
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                  Kontent Marketing: AI Bilan Strategiya
+                </h3>
+                <p className="text-gray-600 mb-4 line-clamp-3">
+                  Zamonaviy kontent marketing strategiyalarida sun'iy intellektdan qanday foydalanish mumkin...
+                </p>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-2">
+                    <Calendar className="w-4 h-4" />
+                    <span>Kecha</span>
+                  </div>
+                  <span className="text-green-600 font-semibold">AI Generated</span>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Blog Post 3 */}
+            <Card className="group hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden bg-white border-0 shadow-lg" data-testid="card-blog-3">
+              <div className="relative overflow-hidden">
+                <div className="w-full h-48 bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-purple-500/10 rounded-full flex items-center justify-center">
+                    <TrendingUp className="w-8 h-8 text-purple-600" />
+                  </div>
+                </div>
+                <div className="absolute top-4 left-4">
+                  <div className="inline-flex items-center px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-semibold text-purple-600">
+                    Biznes
+                  </div>
+                </div>
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                  Startup Rivojlantirish: Muvozanat va Strategiya
+                </h3>
+                <p className="text-gray-600 mb-4 line-clamp-3">
+                  Startup kompaniyalar uchun samarali rivojlantirish strategiyalari va muvozanatli yondashuv...
+                </p>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-2">
+                    <Calendar className="w-4 h-4" />
+                    <span>2 kun oldin</span>
+                  </div>
+                  <span className="text-green-600 font-semibold">AI Generated</span>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* CTA to Blog Page */}
+          <div className="text-center">
+            <Link href="/blog" data-testid="button-view-all-blogs">
+              <Button className="bg-primary text-white hover:bg-primary/90 px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group">
+                Barcha blog postlarni ko'rish
+                <PenTool className="w-5 h-5 ml-2 group-hover:scale-110 transition-transform duration-300" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );
