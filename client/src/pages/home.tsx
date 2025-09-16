@@ -57,18 +57,20 @@ export default function Home() {
                     <Zap className="w-5 h-5 ml-2 group-hover:scale-110 transition-transform duration-300" />
                   </Button>
                 </Link>
-                <Button 
-                  variant="outline" 
-                  className="px-8 py-4 text-lg font-semibold rounded-xl border-2 border-gray-300 hover:border-primary hover:bg-primary/5 transition-all duration-300 group min-w-[200px]"
-                  data-testid="button-watch-demo"
-                >
-                  <FaYoutube className="w-5 h-5 mr-2 text-red-500 group-hover:scale-110 transition-transform duration-300" />
-                  Demo ko'rish
-                </Button>
+                <Link href="/admin" data-testid="link-watch-demo">
+                  <Button 
+                    variant="outline" 
+                    className="px-8 py-4 text-lg font-semibold rounded-xl border-2 border-gray-300 hover:border-primary hover:bg-primary/5 transition-all duration-300 group min-w-[200px]"
+                    data-testid="button-watch-demo"
+                  >
+                    <FaYoutube className="w-5 h-5 mr-2 text-red-500 group-hover:scale-110 transition-transform duration-300" />
+                    Demo ko'rish
+                  </Button>
+                </Link>
               </div>
               
               {/* Stats */}
-              <div className="grid grid-cols-3 gap-8 pt-8">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8">
                 <div className="text-center">
                   <div className="text-3xl lg:text-4xl font-bold text-primary mb-2" data-testid="stat-daily-posts">15+</div>
                   <div className="text-sm font-medium text-gray-600">Kunlik blog postlari</div>
@@ -194,7 +196,7 @@ export default function Home() {
                 </Card>
 
                 {/* Floating Elements */}
-                <div className="absolute -top-6 -right-6 w-12 h-12 bg-accent rounded-full flex items-center justify-center shadow-lg animate-bounce">
+                <div className="absolute -top-6 -right-6 w-12 h-12 bg-accent rounded-full flex items-center justify-center shadow-lg animate-pulse">
                   <Zap className="w-6 h-6 text-white" />
                 </div>
                 <div className="absolute -bottom-4 -left-4 w-8 h-8 bg-primary/20 rounded-full animate-pulse"></div>
@@ -205,103 +207,195 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Preview */}
-      <section className="py-16 bg-background">
+      {/* Services Section */}
+      <section className="py-20 bg-gray-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-foreground mb-4">Bizning xizmatlarimiz</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              AI texnologiyalari yordamida kontentingizni avtomatlashtiring va vaqtingizni tejang
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 bg-primary/10 rounded-full text-primary font-semibold text-sm mb-6">
+              <Settings className="w-4 h-4 mr-2" />
+              Bizning Xizmatlar
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+              AI Texnologiyalar Bilan<br />
+              <span className="text-gradient">Kontent Avtomatizatsiyasi</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Professional darajadagi AI yechimlar bilan biznesingizni keyingi bosqichga olib chiqing
             </p>
           </div>
           
+          {/* Services Grid - 6 Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* AI Blog Generation */}
-            <Card className="hover:shadow-lg transition-shadow" data-testid="card-ai-blog">
-              <CardContent className="p-6">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <PenTool className="w-6 h-6 text-primary" />
+            <Card className="group bg-white border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden" data-testid="card-ai-blog">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <PenTool className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">AI Blog Generatsiyasi</h3>
-                <p className="text-muted-foreground mb-4">
-                  Har kuni 07:00-21:00 oralig'ida avtomatik ravishda SEO-optimallashtirilgan blog postlari yarating.
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">AI Blog Generatsiyasi</h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  Har kuni 15 ta SEO-optimallashtirilgan blog posti avtomatik yaratish
                 </p>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
-                    15 post/kun
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
-                    SEO optimizatsiya
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
-                    O'zbek tilida
-                  </li>
-                </ul>
+                <div className="space-y-3">
+                  <div className="flex items-center text-sm">
+                    <CheckCircle className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700">15 post/kun (07:00-21:00)</span>
+                  </div>
+                  <div className="flex items-center text-sm">
+                    <CheckCircle className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700">SEO optimizatsiya</span>
+                  </div>
+                  <div className="flex items-center text-sm">
+                    <CheckCircle className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700">O'zbek va ingliz tili</span>
+                  </div>
+                </div>
               </CardContent>
             </Card>
 
             {/* Telegram Automation */}
-            <Card className="hover:shadow-lg transition-shadow" data-testid="card-telegram">
-              <CardContent className="p-6">
-                <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
-                  <FaTelegram className="w-6 h-6 text-accent" />
+            <Card className="group bg-white border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden" data-testid="card-telegram">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <FaTelegram className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">Telegram Avtomatizatsiya</h3>
-                <p className="text-muted-foreground mb-4">
-                  Telegram kanalingizga avtomatik tarzda marketing xabarlari va kontentlarni joylashtiring.
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Telegram Avtomatizatsiya</h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  Marketing xabarlari va kontentlarni avtomatik joylashtiring
                 </p>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
-                    5 post/kun
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
-                    Marketing soatlari
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
-                    Bot integratsiyasi
-                  </li>
-                </ul>
+                <div className="space-y-3">
+                  <div className="flex items-center text-sm">
+                    <CheckCircle className="w-5 h-5 text-blue-500 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700">5 post/kun</span>
+                  </div>
+                  <div className="flex items-center text-sm">
+                    <CheckCircle className="w-5 h-5 text-blue-500 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700">Marketing soatlari</span>
+                  </div>
+                  <div className="flex items-center text-sm">
+                    <CheckCircle className="w-5 h-5 text-blue-500 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700">Bot integratsiyasi</span>
+                  </div>
+                </div>
               </CardContent>
             </Card>
 
             {/* AI Image Generation */}
-            <Card className="hover:shadow-lg transition-shadow" data-testid="card-image-generation">
-              <CardContent className="p-6">
-                <div className="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-4">
-                  <Palette className="w-6 h-6 text-purple-500" />
+            <Card className="group bg-white border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden" data-testid="card-image-generation">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Palette className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">AI Rasm Generatsiyasi</h3>
-                <p className="text-muted-foreground mb-4">
-                  Gemini 2.5 Flash yordamida har bir post uchun professional rasmlar yarating.
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">AI Rasm Generatsiyasi</h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  Gemini 2.5 Flash yordamida professional rasmlar yarating
                 </p>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
-                    OG image format
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
-                    Brand ranglar
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
-                    1200x630 o'lcham
-                  </li>
-                </ul>
+                <div className="space-y-3">
+                  <div className="flex items-center text-sm">
+                    <CheckCircle className="w-5 h-5 text-purple-500 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700">OG image format</span>
+                  </div>
+                  <div className="flex items-center text-sm">
+                    <CheckCircle className="w-5 h-5 text-purple-500 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700">Brand ranglari</span>
+                  </div>
+                  <div className="flex items-center text-sm">
+                    <CheckCircle className="w-5 h-5 text-purple-500 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700">1200x630 o'lcham</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Content Moderation */}
+            <Card className="group bg-white border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden" data-testid="card-moderation">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Shield className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Kontent Moderatsiyasi</h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  Avtomatik kontent tekshirish va sifat nazorati
+                </p>
+                <div className="space-y-3">
+                  <div className="flex items-center text-sm">
+                    <CheckCircle className="w-5 h-5 text-amber-500 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700">So'z-so'zga tekshirish</span>
+                  </div>
+                  <div className="flex items-center text-sm">
+                    <CheckCircle className="w-5 h-5 text-amber-500 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700">Sifat baholash</span>
+                  </div>
+                  <div className="flex items-center text-sm">
+                    <CheckCircle className="w-5 h-5 text-amber-500 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700">Qora ro'yxat filtri</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Cost Control */}
+            <Card className="group bg-white border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden" data-testid="card-cost-control">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <TrendingUp className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Xarajatlar Nazorati</h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  AI API xarajatlarini nazorat qilish va optimallashtirish
+                </p>
+                <div className="space-y-3">
+                  <div className="flex items-center text-sm">
+                    <CheckCircle className="w-5 h-5 text-red-500 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700">Kunlik limit</span>
+                  </div>
+                  <div className="flex items-center text-sm">
+                    <CheckCircle className="w-5 h-5 text-red-500 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700">Xarajat hisoboti</span>
+                  </div>
+                  <div className="flex items-center text-sm">
+                    <CheckCircle className="w-5 h-5 text-red-500 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700">Ogohlantirish tizimi</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Admin Dashboard */}
+            <Card className="group bg-white border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden" data-testid="card-admin-dashboard">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <BarChart3 className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Admin Dashboard</h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  To'liq nazorat va boshqaruv paneli
+                </p>
+                <div className="space-y-3">
+                  <div className="flex items-center text-sm">
+                    <CheckCircle className="w-5 h-5 text-primary mr-3 flex-shrink-0" />
+                    <span className="text-gray-700">Real-time monitoring</span>
+                  </div>
+                  <div className="flex items-center text-sm">
+                    <CheckCircle className="w-5 h-5 text-primary mr-3 flex-shrink-0" />
+                    <span className="text-gray-700">Statistika va hisobotlar</span>
+                  </div>
+                  <div className="flex items-center text-sm">
+                    <CheckCircle className="w-5 h-5 text-primary mr-3 flex-shrink-0" />
+                    <span className="text-gray-700">Sozlamalar boshqaruvi</span>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </div>
 
-          <div className="text-center mt-12">
+          {/* CTA Section */}
+          <div className="text-center mt-16">
             <Link href="/services" data-testid="button-view-all-services">
-              <Button className="bg-primary text-primary-foreground px-8 py-3 hover:bg-primary/90 font-semibold">
+              <Button className="bg-primary text-white hover:bg-primary/90 px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group">
                 Barcha xizmatlarni ko'rish
+                <Settings className="w-5 h-5 ml-2 group-hover:rotate-90 transition-transform duration-300" />
               </Button>
             </Link>
           </div>
