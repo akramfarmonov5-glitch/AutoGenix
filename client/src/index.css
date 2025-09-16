@@ -4,38 +4,39 @@
 @tailwind utilities;
 
 :root {
-  --background: hsl(210, 40%, 98%);
-  --foreground: hsl(222.2, 84%, 4.9%);
+  /* AutoGenix AI Brand Colors */
+  --background: hsl(210, 40%, 98%); /* #F8FAFC - Light background */
+  --foreground: hsl(222, 47%, 11%); /* #0F172A - Dark gray text */
   --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(222.2, 84%, 4.9%);
+  --card-foreground: hsl(222, 47%, 11%);
   --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(222.2, 84%, 4.9%);
-  --primary: hsl(221.2, 83.2%, 53.3%);
-  --primary-foreground: hsl(210, 40%, 98%);
+  --popover-foreground: hsl(222, 47%, 11%);
+  --primary: hsl(225, 71%, 40%); /* #1E40AF - Primary blue */
+  --primary-foreground: hsl(0, 0%, 100%);
   --secondary: hsl(210, 40%, 96%);
-  --secondary-foreground: hsl(222.2, 84%, 4.9%);
+  --secondary-foreground: hsl(222, 47%, 11%);
   --muted: hsl(210, 40%, 96%);
   --muted-foreground: hsl(215.4, 16.3%, 46.9%);
-  --accent: hsl(48, 96%, 53%);
-  --accent-foreground: hsl(222.2, 84%, 4.9%);
+  --accent: hsl(48, 96%, 53%); /* #FACC15 - Gold accent */
+  --accent-foreground: hsl(222, 47%, 11%);
   --destructive: hsl(0, 84.2%, 60.2%);
   --destructive-foreground: hsl(210, 40%, 98%);
   --border: hsl(214.3, 31.8%, 91.4%);
   --input: hsl(214.3, 31.8%, 91.4%);
-  --ring: hsl(221.2, 83.2%, 53.3%);
-  --chart-1: hsl(221.2, 83.2%, 53.3%);
+  --ring: hsl(225, 71%, 40%);
+  --chart-1: hsl(225, 71%, 40%);
   --chart-2: hsl(159.7826, 100%, 36.0784%);
   --chart-3: hsl(48, 96%, 53%);
   --chart-4: hsl(147.1429, 78.5047%, 41.9608%);
   --chart-5: hsl(341.4894, 75.2000%, 50.9804%);
   --sidebar: hsl(210, 40%, 96%);
-  --sidebar-foreground: hsl(222.2, 84%, 4.9%);
-  --sidebar-primary: hsl(221.2, 83.2%, 53.3%);
+  --sidebar-foreground: hsl(222, 47%, 11%);
+  --sidebar-primary: hsl(225, 71%, 40%);
   --sidebar-primary-foreground: hsl(210, 40%, 98%);
   --sidebar-accent: hsl(210, 40%, 96%);
-  --sidebar-accent-foreground: hsl(221.2, 83.2%, 53.3%);
+  --sidebar-accent-foreground: hsl(225, 71%, 40%);
   --sidebar-border: hsl(214.3, 31.8%, 91.4%);
-  --sidebar-ring: hsl(221.2, 83.2%, 53.3%);
+  --sidebar-ring: hsl(225, 71%, 40%);
   --font-sans: Inter, sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
@@ -43,25 +44,25 @@
 }
 
 .dark {
-  --background: hsl(222.2, 84%, 4.9%);
+  --background: hsl(222, 47%, 11%); /* Dark background */
   --foreground: hsl(210, 40%, 98%);
-  --card: hsl(222.2, 84%, 4.9%);
+  --card: hsl(222, 32%, 15%);
   --card-foreground: hsl(210, 40%, 98%);
-  --popover: hsl(222.2, 84%, 4.9%);
+  --popover: hsl(222, 32%, 15%);
   --popover-foreground: hsl(210, 40%, 98%);
-  --primary: hsl(221.2, 83.2%, 53.3%);
+  --primary: hsl(225, 71%, 45%); /* Slightly lighter primary for dark mode */
   --primary-foreground: hsl(210, 40%, 98%);
   --secondary: hsl(217.2, 32.6%, 17.5%);
   --secondary-foreground: hsl(210, 40%, 98%);
   --muted: hsl(217.2, 32.6%, 17.5%);
   --muted-foreground: hsl(215, 20.2%, 65.1%);
-  --accent: hsl(48, 96%, 53%);
-  --accent-foreground: hsl(222.2, 84%, 4.9%);
+  --accent: hsl(48, 96%, 53%); /* Keep gold accent */
+  --accent-foreground: hsl(222, 47%, 11%);
   --destructive: hsl(0, 84.2%, 60.2%);
   --destructive-foreground: hsl(210, 40%, 98%);
   --border: hsl(217.2, 32.6%, 17.5%);
   --input: hsl(217.2, 32.6%, 17.5%);
-  --ring: hsl(221.2, 83.2%, 53.3%);
+  --ring: hsl(225, 71%, 45%);
 }
 
 @layer base {
@@ -85,7 +86,34 @@
   
   .bg-hero-pattern {
     background-image: 
-      radial-gradient(circle at 25% 25%, hsl(221.2, 83.2%, 53.3%, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 75% 75%, hsl(48, 96%, 53%, 0.1) 0%, transparent 50%);
+      radial-gradient(circle at 25% 25%, hsl(225, 71%, 40%, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, hsl(48, 96%, 53%, 0.08) 0%, transparent 50%);
+  }
+
+  .bg-gradient-hero {
+    background: linear-gradient(135deg, 
+      hsl(210, 40%, 98%) 0%, 
+      hsl(225, 71%, 40%, 0.03) 100%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(225, 71%, 40%) 0%, hsl(48, 96%, 53%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .shadow-autogenix {
+    box-shadow: 0 10px 40px -10px hsl(225, 71%, 40%, 0.15);
+  }
+  
+  .shadow-card-hover {
+    box-shadow: 0 20px 60px -10px hsl(225, 71%, 40%, 0.25);
+  }
+
+  .border-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(white, white) padding-box,
+               linear-gradient(135deg, hsl(225, 71%, 40%), hsl(48, 96%, 53%)) border-box;
   }
 }
