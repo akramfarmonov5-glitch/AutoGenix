@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
+import { motion } from "framer-motion";
 import { 
   PenTool, 
   Settings, 
@@ -31,23 +32,44 @@ export default function Home() {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
+            <motion.div 
+              className="space-y-8"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
               {/* Badge */}
-              <div className="inline-flex items-center px-6 py-3 bg-white/80 backdrop-blur-sm rounded-full border border-primary/20 shadow-sm">
+              <motion.div 
+                className="inline-flex items-center px-6 py-3 bg-white/80 backdrop-blur-sm rounded-full border border-primary/20 shadow-sm"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                whileHover={{ scale: 1.05 }}
+              >
                 <Bot className="w-5 h-5 mr-3 text-primary" />
                 <span className="text-sm font-semibold text-gray-700">№1 AI Content Automation Platform</span>
-              </div>
+              </motion.div>
               
               {/* Main Headline */}
               <div className="space-y-4">
-                <h1 className="text-5xl lg:text-7xl font-bold leading-none tracking-tight">
+                <motion.h1 
+                  className="text-5xl lg:text-7xl font-bold leading-none tracking-tight"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                >
                   <span className="text-gray-900">Biznesingizni</span><br />
                   <span className="text-gradient">AI bilan</span><br />
                   <span className="text-gray-900">avtomatlashtiring</span>
-                </h1>
-                <p className="text-xl lg:text-2xl text-gray-600 max-w-2xl leading-relaxed">
+                </motion.h1>
+                <motion.p 
+                  className="text-xl lg:text-2xl text-gray-600 max-w-2xl leading-relaxed"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                >
                   Har kuni <span className="font-semibold text-primary">15 ta professional blog posti</span> va <span className="font-semibold text-primary">5 ta Telegram xabari</span> avtomatik yaratish. Gemini AI texnologiyasi bilan vaqtingizni 90% tejang.
-                </p>
+                </motion.p>
               </div>
               
               {/* CTA Buttons */}
@@ -93,7 +115,7 @@ export default function Home() {
                   <span className="text-sm font-medium text-gray-600">Hozir 50+ kompaniya ishlatmoqda</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
             {/* Dashboard Preview */}
             <div className="relative lg:pl-8">
               {/* Floating Dashboard */}
