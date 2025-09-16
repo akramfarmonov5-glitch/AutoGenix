@@ -12,7 +12,8 @@ import {
   Palette,
   Shield,
   TrendingUp,
-  Bot
+  Bot,
+  Calendar
 } from "lucide-react";
 import { FaTelegram, FaYoutube } from "react-icons/fa";
 
@@ -521,6 +522,190 @@ export default function Home() {
               <Button className="bg-primary text-white hover:bg-primary/90 px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group">
                 Barcha blog postlarni ko'rish
                 <PenTool className="w-5 h-5 ml-2 group-hover:scale-110 transition-transform duration-300" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio/Case Studies Section */}
+      <section className="py-20 bg-gray-50/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 bg-purple-100 rounded-full text-purple-700 font-semibold text-sm mb-6">
+              <TrendingUp className="w-4 h-4 mr-2" />
+              Muvaffaqiyat Hikoyalari
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+              Mijozlarimizning <span className="text-gradient">Natijalari</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              AutoGenix AI yordamida o'z bizneslarini muvaffaqiyatli rivojlantirgan kompaniyalarning haqiqiy natijalari
+            </p>
+          </div>
+
+          {/* Case Studies Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Case Study 1 - TechCorp */}
+            <Card className="group hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden bg-white border-0 shadow-lg" data-testid="card-case-study-1">
+              <CardContent className="p-8">
+                {/* Company Logo/Name */}
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mr-4">
+                    <span className="text-white font-bold text-lg">TC</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900">TechCorp Solutions</h3>
+                    <p className="text-sm text-gray-600">IT Xizmatlar</p>
+                  </div>
+                </div>
+
+                {/* Metrics */}
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="text-center p-4 bg-green-50 rounded-lg">
+                    <div className="text-2xl font-bold text-green-600" data-testid="metric-content-increase">300%</div>
+                    <div className="text-xs text-gray-600">Kontent o'sishi</div>
+                  </div>
+                  <div className="text-center p-4 bg-blue-50 rounded-lg">
+                    <div className="text-2xl font-bold text-blue-600" data-testid="metric-time-saved">85%</div>
+                    <div className="text-xs text-gray-600">Vaqt tejash</div>
+                  </div>
+                </div>
+
+                {/* Testimonial */}
+                <blockquote className="text-gray-700 italic mb-4">
+                  "AutoGenix AI bizning kontent strategiyamizni butunlay o'zgartirdi. Endi bir kunda 15 ta sifatli blog posti avtomatik yaratamiz."
+                </blockquote>
+                
+                <div className="flex items-center justify-between">
+                  <div className="text-sm">
+                    <div className="font-semibold text-gray-900">Akmal Nazarov</div>
+                    <div className="text-gray-600">Marketing Director</div>
+                  </div>
+                  <div className="flex items-center text-green-600 text-sm font-semibold">
+                    <CheckCircle className="w-4 h-4 mr-1" />
+                    Faol mijoz
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Case Study 2 - StartupHub */}
+            <Card className="group hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden bg-white border-0 shadow-lg" data-testid="card-case-study-2">
+              <CardContent className="p-8">
+                {/* Company Logo/Name */}
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center mr-4">
+                    <span className="text-white font-bold text-lg">SH</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900">StartupHub</h3>
+                    <p className="text-sm text-gray-600">Biznes Inkubator</p>
+                  </div>
+                </div>
+
+                {/* Metrics */}
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="text-center p-4 bg-purple-50 rounded-lg">
+                    <div className="text-2xl font-bold text-purple-600" data-testid="metric-engagement">450%</div>
+                    <div className="text-xs text-gray-600">Engagement</div>
+                  </div>
+                  <div className="text-center p-4 bg-orange-50 rounded-lg">
+                    <div className="text-2xl font-bold text-orange-600" data-testid="metric-leads">200%</div>
+                    <div className="text-xs text-gray-600">Lead o'sishi</div>
+                  </div>
+                </div>
+
+                {/* Testimonial */}
+                <blockquote className="text-gray-700 italic mb-4">
+                  "Telegram avtomatizatsiyasi bizga katta yordam berdi. 5 ta post kunlik avtomatik tarzda yuboriladi va natijalar ajoyib."
+                </blockquote>
+                
+                <div className="flex items-center justify-between">
+                  <div className="text-sm">
+                    <div className="font-semibold text-gray-900">Dilshoda Karimova</div>
+                    <div className="text-gray-600">CEO & Founder</div>
+                  </div>
+                  <div className="flex items-center text-green-600 text-sm font-semibold">
+                    <CheckCircle className="w-4 h-4 mr-1" />
+                    Faol mijoz
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Case Study 3 - EduPlatform */}
+            <Card className="group hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden bg-white border-0 shadow-lg" data-testid="card-case-study-3">
+              <CardContent className="p-8">
+                {/* Company Logo/Name */}
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center mr-4">
+                    <span className="text-white font-bold text-lg">EP</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900">EduPlatform</h3>
+                    <p className="text-sm text-gray-600">Online Ta'lim</p>
+                  </div>
+                </div>
+
+                {/* Metrics */}
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="text-center p-4 bg-green-50 rounded-lg">
+                    <div className="text-2xl font-bold text-green-600" data-testid="metric-course-content">500%</div>
+                    <div className="text-xs text-gray-600">Kurs kontenti</div>
+                  </div>
+                  <div className="text-center p-4 bg-amber-50 rounded-lg">
+                    <div className="text-2xl font-bold text-amber-600" data-testid="metric-student-engagement">180%</div>
+                    <div className="text-xs text-gray-600">Talaba faolligi</div>
+                  </div>
+                </div>
+
+                {/* Testimonial */}
+                <blockquote className="text-gray-700 italic mb-4">
+                  "AI rasm generatsiyasi bizning kurs materiallarimizni yangi darajaga olib chiqdi. Har bir mavzu uchun professional rasmlar."
+                </blockquote>
+                
+                <div className="flex items-center justify-between">
+                  <div className="text-sm">
+                    <div className="font-semibold text-gray-900">Bobur Umarov</div>
+                    <div className="text-gray-600">Ta'lim Direktori</div>
+                  </div>
+                  <div className="flex items-center text-green-600 text-sm font-semibold">
+                    <CheckCircle className="w-4 h-4 mr-1" />
+                    Faol mijoz
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Stats Row */}
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+            <div className="group hover:scale-105 transition-transform duration-300">
+              <div className="text-4xl font-bold text-primary mb-2" data-testid="stat-total-clients">50+</div>
+              <div className="text-gray-600">Faol mijozlar</div>
+            </div>
+            <div className="group hover:scale-105 transition-transform duration-300">
+              <div className="text-4xl font-bold text-primary mb-2" data-testid="stat-posts-generated">15,000+</div>
+              <div className="text-gray-600">Yaratilgan postlar</div>
+            </div>
+            <div className="group hover:scale-105 transition-transform duration-300">
+              <div className="text-4xl font-bold text-primary mb-2" data-testid="stat-hours-saved">10,000+</div>
+              <div className="text-gray-600">Tejangan soatlar</div>
+            </div>
+            <div className="group hover:scale-105 transition-transform duration-300">
+              <div className="text-4xl font-bold text-primary mb-2" data-testid="stat-satisfaction">98%</div>
+              <div className="text-gray-600">Mijoz mamnuniyati</div>
+            </div>
+          </div>
+
+          {/* CTA Section */}
+          <div className="text-center mt-16">
+            <Link href="/contact" data-testid="button-start-your-success">
+              <Button className="bg-primary text-white hover:bg-primary/90 px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group">
+                Sizning muvaffaqiyatingizni boshlang
+                <TrendingUp className="w-5 h-5 ml-2 group-hover:scale-110 transition-transform duration-300" />
               </Button>
             </Link>
           </div>
